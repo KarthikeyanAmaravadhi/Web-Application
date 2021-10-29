@@ -1,0 +1,73 @@
+<html>
+<head>
+	<title> Home Page </title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css">
+</head>
+<body>
+	<!-- Navigation Bar -->
+	<header class="text-gray-600 body-font">
+	  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+	    <a href="{{ url_for('home') }}" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+	      <span class="ml-3 text-xl">URL Shortner</span>
+	    </a>
+	     <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-900 flex flex-wrap items-center text-base justify-center">
+	     	<a href="{{ url_for('history') }}"><font color="black">History</font></a>
+	    </nav>
+	    <a href="" class="inline-flex items-center bg-grey-900 border-0 py-1 px-3 focus:outline-none hover:bg-gray-400 rounded text-base mt-4 md:mt-0"><font color="black">Welcome, {{session.username}} !</font>
+	        <path d="M5 12h14M12 5l7 7-7 7"></path>
+	      </svg>
+	    </a>
+	    <a href="{{url_for('logout')}}" class="btn btn-primary inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 bg-warning">
+	        <path d="M5 12h14M12 5l7 7-7 7">Logout</path>
+	      </svg>
+	    </a>
+	  </div>
+	</header>
+
+	<!-- Search Bar -->
+	<form action="{{ url_for('result') }}" method="post">
+		<section class="text-gray-600 body-font">
+		  <div class="container px-5 py-24 mx-auto">
+		    <div class="flex flex-col text-center w-full mb-12">
+		      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Enter the URL</h1>
+		    <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+		      <div class="relative flex-grow w-full">
+		        <input type="text" id="full-name" name="url" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+		      </div>
+		      <button class="text-white bg-indigo-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-900 rounded text-lg">shorten</button>
+		    </div>
+		  </div>
+		</section>
+	</form>
+	<p style="text-align: center;">URL Status: {{msg}}</p>
+	<section class="text-gray-600 body-font">
+		  <div class="container px-1 py-5 mx-auto">
+		    <div class="flex flex-col text-center w-full mb-12">
+		    <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-2 sm:space-x-2 sm:space-y-0 space-y-4 sm:px-0 items-end">
+		      <div class="relative flex-grow w-full">
+		        <input type="text" id="myInput" value="{{msg}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" disabled>
+		      </div>
+				<button class="text-white bg-indigo-600 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-900 rounded text-lg btn btn-primary" onclick="myFunction()">copy</button>
+		    </div>
+		  </div>
+	</section>
+	<!-- Copy of the JS Code -->
+	<script>
+	function myFunction() {
+	  /* Get the text field */
+	  var copyText = document.getElementById("myInput");
+
+	  /* Select the text field */
+	  copyText.select();
+	  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+	  /* Copy the text inside the text field */
+	  navigator.clipboard.writeText(copyText.value);
+	  
+	  /* Alert the copied text */
+	  alert("Copied the text: " + copyText.value);
+	}
+	</script>
+
+</body>
+</html>

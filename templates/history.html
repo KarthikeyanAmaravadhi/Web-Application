@@ -1,0 +1,97 @@
+<html>
+<head>
+	<title> Home Page </title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css">
+	<style>
+	.center {
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+	</style>
+	 <style>
+	.scrollit {
+	    overflow:scroll;
+	    height:100px;
+	}
+	</style>
+
+</head>
+<body>
+	<!-- Navigation Bar -->
+	<header class="text-gray-600 body-font">
+	  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+	    <a href="{{ url_for('home') }}" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+	      <span class="ml-3 text-xl">URL Shortner</span>
+	    </a>
+	     <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+	     	<a href="{{ url_for('history') }}"><b>History</b></a>
+	    </nav>
+	    <a href="" class="inline-flex items-center bg-primary-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"><font color="black">{{session.username}}</font>
+	        <path d="M5 12h14M12 5l7 7-7 7"></path>
+	      </svg>
+	    </a>
+	    <a href="{{url_for('logout')}}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 bg-warning">
+	        <path d="M5 12h14M12 5l7 7-7 7">Logout</path>
+	      </svg>
+	    </a>
+	  </div>
+	</header>
+
+	<br>
+	<h1 style="text-align: center;">History</h1>
+	<br><br>
+	<div class="container flex justify-center mx-auto overflow-x:auto;">
+    <div class="flex flex-col">
+        <div class="w-full">
+            <div class="border-b border-grey-900 shadow">
+                <table>
+                    <thead class="bg bg-gray-300">
+                        <tr>
+                            <th class="px-6 py-2 text-xs text-gray-500">
+                                <font color="blue">ID</font>
+                            </th>
+                            <th class="px-6 py-2 text-xs text-gray-500">
+                                <font color="blue">UID</font>
+                            </th>
+                            <th class="px-6 py-2 text-xs text-gray-500">
+                                <font color="blue">Previousurl</font>
+                            </th>
+                            <th class="px-6 py-2 text-xs text-gray-500">
+                            	<font color="blue">Originalurl</font>
+                            </th>
+                            <th class="px-6 py-2 text-xs text-gray-500">
+                                <font color="blue">Date</font>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg bg-gray-300">
+                    	{% for x in status %}
+                        <tr class="whitespace-nowrap">
+                            <td class="px-6 py-4 text-sm text-gray-900 ">
+                                {{ x.pid }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900 ">
+                                {{ x.uid }}
+                            </td>
+                            <td class="px-6 py-4 ">
+                                <div class="text-sm text-gray-900">
+                                 {{ x.previousurl }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm  text-gray-900">
+                                {{ x.orginalurl }}
+                            </td>
+                             <td class="px-6 py-4 text-sm  text-gray-900">
+                                {{ x.date }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+	</div>
+
+</body>
+</html>
